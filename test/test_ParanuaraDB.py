@@ -1,4 +1,7 @@
+import sys
 import unittest
+
+sys.path.append('../')
 from app.ParanuaraDB import ParanuaraDB
  
 class TestParanuaraDB(unittest.TestCase):
@@ -84,8 +87,8 @@ class TestParanuaraDB(unittest.TestCase):
         assert(result == ["CompanyA", "CompanyB CompanyA", "CompanyB"])
         result = self.db.parseInput(" CompanyA . CompanyB")
         assert(result == ["CompanyA . CompanyB"])
-        result = self.db.parseInput(" CompanyA / CompanyB . \;/ CompanyC +.-*/&¨%$#@ , CompanyD ")
-        assert(result == ["CompanyA / CompanyB . \;/ CompanyC +.-*/&¨%$#@", "CompanyD"])
+        result = self.db.parseInput(" CompanyA / CompanyB . \;/ CompanyC +.-*/&%$#@ , CompanyD ")
+        assert(result == ["CompanyA / CompanyB . \;/ CompanyC +.-*/&%$#@", "CompanyD"])
     
 #    Tests for companies
     def test_db_check_input_for_existing_company(self):
@@ -181,6 +184,5 @@ class TestParanuaraDB(unittest.TestCase):
         result = self.db.validateInput("NoCompany, Jack NoName")
         assert(result == "Warning: \"NoCompany, Jack NoName\" was not found in our Data Base! Aborting Search...\nPlease, check for misspelling and try again!")
     
-        
 if __name__ == '__main__':
     unittest.main()
